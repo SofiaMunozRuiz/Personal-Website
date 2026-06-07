@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title> 🧠 Sofia Muñoz Ruiz · Neuroscientist & Neuroengineer</title>
+<title>Sofia Muñoz Ruiz · Neuroscientist & Neuroengineer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,600;0,9..40,800;1,9..40,300&display=swap" rel="stylesheet" />
 <style>
@@ -49,7 +49,7 @@
   /* ── HERO ── */
   #hero {
     min-height: 100vh;
-    display: grid; grid-template-columns: 1fr 1.5fr;
+    display: grid; grid-template-columns: 1fr 1fr;
     align-items: center; gap: 5rem;
     padding: 8rem 4rem 4rem;
     max-width: 1200px; margin: 0 auto;
@@ -83,7 +83,7 @@
   .hero-visual { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; box-shadow: var(--shadow); }
   .visual-label { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.15em; color: var(--muted); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
   .visual-label span { color: var(--cyan); font-weight: 700; }
-  .eeg-canvas { width: 100%; height: 320px; display: block; }
+  .eeg-canvas { width: 100%; height: 240px; display: block; }
   .tags-row { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 1.2rem; }
   .tag { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.07em; padding: 0.28rem 0.65rem; border-radius: 20px; border: 1px solid; }
   .tag-pink    { border-color: rgba(232,0,90,0.3);   color: var(--pink);   background: rgba(232,0,90,0.06); }
@@ -132,7 +132,7 @@
 
   .about-text h3 { font-size: 1.35rem; font-weight: 800; margin-bottom: 0.2rem; color: var(--ink); }
   .about-text .role { font-family: var(--mono); font-size: 0.68rem; color: var(--cyan); letter-spacing: 0.1em; margin-bottom: 1.4rem; }
-  .about-text p { color: var(--ink2); margin-bottom: 1rem; font-size: 0.9rem; text-align: justify;}
+  .about-text p { color: var(--ink2); margin-bottom: 1rem; font-size: 0.9rem; }
   .about-text strong { color: var(--ink); }
 
   .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.7rem; margin-top: 1.8rem; }
@@ -248,7 +248,7 @@
 
 <!-- NAV -->
 <nav>
-  <a class="nav-logo" href="#hero"> 🧠 Sofia Muñoz Ruiz</a>
+  <a class="nav-logo" href="#hero">Sofia Muñoz Ruiz</a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#publications">Publications</a></li>
@@ -282,7 +282,7 @@
   </div>
 
   <div class="hero-visual">
-    <div class="visual-label"><span>EEG</span> · RESTING STATE · 8-CHANNEL</div>
+    <div class="visual-label"><span>EEG</span> · RESTING STATE · REAL SIGNAL · 8-CH</div>
     <canvas class="eeg-canvas" id="eegCanvas"></canvas>
     <div class="tags-row">
       <span class="tag tag-pink">EEG Analysis</span>
@@ -304,21 +304,41 @@
     </div>
     <div class="about-grid">
       <div class="about-photo-wrap">
-        
+        <!--
+          ════════════════════════════════
+          YOUR PHOTO — replace this block:
+
           <img
-            src="sofia.jpg"
+            src="images/sofia.jpg"
             alt="Sofia Muñoz Ruiz"
-            style="width:100%; border-radius:8px; display:block; box-shadow:var(--shadow);"
+            style="width:100%; border-radius:8px;
+                   display:block; box-shadow:var(--shadow);"
           />
-          <div class="photo-frame-decor"></div>
+
+          Steps:
+          1. Create a folder called "images" next to index.html
+          2. Copy your photo there and name it sofia.jpg
+          3. Delete the div below and paste the <img> tag above
+          ════════════════════════════════
+        -->
+        <div class="photo-placeholder">
+          <svg width="55" height="55" viewBox="0 0 60 60" fill="none">
+            <circle cx="30" cy="22" r="12" stroke="#7c3aed" stroke-width="1.5"/>
+            <path d="M6 54c0-13.255 10.745-24 24-24s24 10.745 24 24" stroke="#7c3aed" stroke-width="1.5"/>
+          </svg>
+          <span style="color:#3a3f52">YOUR PHOTO HERE</span>
+          <span style="font-size:0.5rem;color:#7a8099;padding:0 1rem">Replace with &lt;img src="images/sofia.jpg"&gt;</span>
         </div>
+        <div class="photo-frame-decor"></div>
+      </div>
 
       <div class="about-text">
         <h3>Sofia Muñoz Ruiz</h3>
         <p class="role">MSc Student · Neuroengineering · University of Antioquia, Medellín</p>
-        <p>I am a highly skilled professional with a BSc in Engineering Physics and MSc student in Engineering, specializing in Neuroengineering, with a strong interdisciplinary background in biomedical signal processing, artificial intelligence, and computational neuroscience. My academic training has provided me with solid foundations in mathematics, physics, statistics, signal processing, image analysis, and data science using Python and MATLAB. My research experience spans EEG and ECG analysis, brain–heart interactions during anesthesia, machine learning, deep learning, and the study of neurophysiological biomarkers associated with neurological disorders such as Alzheimer’s disease.</p>
-        <p>Currently, I conduct research in collaboration with the Neuroscience Group of Antioquia and Sapienza University of Rome, focusing on the identification of neurophysiological patterns associated with the preclinical stages of Alzheimer’s disease using EEG signals recorded during serious games. In parallel, I teach laboratory courses in biosignals, artificial intelligence, and machine learning, supervising projects related to Brain–Computer Interfaces (BCIs) and neural signal analysis.</p>
-        <p>My experience in data analysis within healthcare and neuroscience, combined with strong analytical, research, and collaborative skills, has enabled me to work effectively in multidisciplinary research environments. I am particularly motivated to continue exploring diverse areas of neuroscience and biomedical engineering, applying advanced computational methods to better understand brain function. My long-term goal is to contribute to the development of innovative tools and knowledge that advance our understanding of the human brain.</p>
+        <p>I am a Physics Engineer and MSc student in Neuroengineering with a strong interdisciplinary background in biomedical signal processing, artificial intelligence, and computational neuroscience. My research focuses on identifying neurophysiological biomarkers for preclinical Alzheimer's disease using EEG and deep learning, in collaboration with the Neuroscience Group of Antioquia and Sapienza University of Rome.</p>
+        <p>My undergraduate thesis — awarded <strong>Honorable Mention</strong> — studied brain–heart interactions during anesthesia using ML applied to physiological signals from 605 patients (VitalDB database). I also teach laboratory courses in biosignals and AI/ML at UdeA.</p>
+        <p>DAAD scholarship recipient. Presented research at the University Medical Center Göttingen and University of Augsburg, Germany. Native Spanish · B2.2 English · A2 French.</p>
+
         <div class="skills-grid">
           <div class="skill-item">
             <div class="skill-label">Signals</div>
@@ -364,7 +384,7 @@
         <div class="pub-year">2025</div>
         <div class="pub-content">
           <h4>Tachogram processing considering different types of artifacts in heart rate variability analysis</h4>
-          <p class="pub-meta">Sofia Muñoz-Ruiz†, Juandiego Saavedra-Ordoñez†, Natalia Valencia-Fajardo†, Rubiel Vargas-Cañas, Ennio Idrobo-Ávila · <em>Journal</em> · Under Review</p>
+          <p class="pub-meta">Sofia Muñoz-Ruiz†, Juandiego Saavedra-Ordoñez†, Natalia Valencia-Fajardo†, Sebastian Zaunseder, Nicolai Spicher, Rubiel Vargas-Cañas, Ennio Idrobo-Ávila · <em>Royal Society Open Science</em> · Under Review</p>
           <div class="pub-badges">
             <span class="badge badge-violet">ECG</span>
             <span class="badge badge-violet">HRV</span>
@@ -602,7 +622,7 @@
           Save the file: images/gottingen_presentation.jpg
           (the photo presenting at Göttingen — Oral_presentation_...Gottingen.jpg)
         -->
-        <img src="Oral presentation - Center for the Heart and Brain, Gottingen.jpg" alt="Oral presentation Göttingen"
+        <img src="images/gottingen_presentation.jpg" alt="Oral presentation Göttingen"
              onerror="this.style.display='none';" />
         <div class="img-placeholder">
           <span style="font-size:1.4rem">📷</span>
@@ -617,7 +637,7 @@
           Save the file: images/augsburg_presentation.jpg
           (the photo at Augsburg — Oral_presentation_...Augsburg.jpg)
         -->
-        <img src="Oral presentation - Faculty of Applied Computer Science,University of Augsburg.jpg" alt="Oral presentation Augsburg"
+        <img src="images/augsburg_presentation.jpg" alt="Oral presentation Augsburg"
              onerror="this.style.display='none';" />
         <div class="img-placeholder">
           <span style="font-size:1.4rem">📷</span>
@@ -632,7 +652,7 @@
           Save the file: images/daad_group.jpg
           (the group photo — coordinating_and_contributing...jpg)
         -->
-        <img src="daad_group.jpg" alt="DAAD Study Visit Group"
+        <img src="images/daad_group.jpg" alt="DAAD Study Visit Group"
              onerror="this.style.display='none';" />
         <div class="img-placeholder">
           <span style="font-size:1.4rem">📷</span>
@@ -642,11 +662,9 @@
       </div>
 
     </div>
-    <!--
     <p style="font-family:var(--mono);font-size:0.62rem;color:var(--muted);margin-top:1.2rem;text-align:center;letter-spacing:0.06em;">
-      #Create an <strong style="color:var(--violet)">images/</strong> folder next to index.html and rename your photos as shown above.
+      Create an <strong style="color:var(--violet)">images/</strong> folder next to index.html and rename your photos as shown above.
     </p>
-    -->
   </div>
 </section>
 
@@ -696,7 +714,7 @@
 </footer>
 
 <script>
-//* EEG ANIMATION — REAL SIGNALS */
+/* EEG ANIMATION — REAL SIGNALS */
 const canvas = document.getElementById('eegCanvas');
 const ctx = canvas.getContext('2d');
 function resize() {
