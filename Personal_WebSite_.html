@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sofia Muñoz Ruiz · Neuroscientist & Neuroengineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,600;0,9..40,800;1,9..40,300&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg:      #ffffff;
+    --bg2:     #f7f8fc;
+    --bg3:     #eef0f6;
+    --ink:     #0e1117;
+    --ink2:    #3a3f52;
+    --muted:   #7a8099;
+    --border:  rgba(14,17,23,0.09);
+    --pink:    #e8005a;
+    --violet:  #7c3aed;
+    --cyan:    #0891b2;
+    --lime:    #4d7c0f;
+    --amber:   #b45309;
+    --mono: 'Space Mono', monospace;
+    --sans: 'DM Sans', sans-serif;
+    --shadow: 0 1px 3px rgba(14,17,23,0.07), 0 4px 16px rgba(14,17,23,0.05);
+    --shadow-hover: 0 4px 20px rgba(14,17,23,0.12);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.7; overflow-x: hidden; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.1rem 4rem;
+    background: rgba(255,255,255,0.9);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { font-family: var(--mono); font-size: 0.82rem; color: var(--pink); letter-spacing: 0.08em; text-decoration: none; font-weight: 700; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--ink); }
+
+  section { position: relative; }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center; gap: 5rem;
+    padding: 8rem 4rem 4rem;
+    max-width: 1200px; margin: 0 auto;
+  }
+
+  .hero-tag {
+    font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--pink);
+    display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 1.5rem;
+  }
+  .hero-tag::before { content: ''; display: block; width: 28px; height: 1.5px; background: var(--pink); }
+
+  h1 { font-size: clamp(2.6rem, 4.5vw, 4rem); font-weight: 800; line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 1.4rem; color: var(--ink); }
+  h1 em { font-style: normal; background: linear-gradient(100deg, var(--violet), var(--pink)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+  .hero-bio { font-size: 0.95rem; color: var(--ink2); max-width: 420px; margin-bottom: 2.5rem; border-left: 2.5px solid var(--violet); padding-left: 1.2rem; line-height: 1.8; }
+
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.7rem 1.5rem; border-radius: 4px; text-decoration: none; transition: all 0.2s; cursor: pointer; display: inline-block; }
+  .btn-primary { background: var(--pink); color: #fff; border: 1.5px solid var(--pink); }
+  .btn-primary:hover { background: #c0004e; border-color: #c0004e; transform: translateY(-2px); box-shadow: 0 4px 14px rgba(232,0,90,0.3); }
+  .btn-outline { border: 1.5px solid var(--violet); color: var(--violet); background: transparent; }
+  .btn-outline:hover { background: rgba(124,58,237,0.06); transform: translateY(-2px); }
+
+  .hero-links { display: flex; gap: 1.4rem; margin-top: 2rem; flex-wrap: wrap; }
+  .hero-links a { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.08em; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 0.25rem; transition: color 0.2s; border-bottom: 1px solid transparent; padding-bottom: 1px; }
+  .hero-links a:hover { color: var(--ink); border-bottom-color: var(--ink); }
+  .hero-links a::after { content: '↗'; font-size: 0.58rem; }
+
+  /* Hero EEG card */
+  .hero-visual { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; box-shadow: var(--shadow); }
+  .visual-label { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.15em; color: var(--muted); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+  .visual-label span { color: var(--cyan); font-weight: 700; }
+  .eeg-canvas { width: 100%; height: 240px; display: block; }
+  .tags-row { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 1.2rem; }
+  .tag { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.07em; padding: 0.28rem 0.65rem; border-radius: 20px; border: 1px solid; }
+  .tag-pink    { border-color: rgba(232,0,90,0.3);   color: var(--pink);   background: rgba(232,0,90,0.06); }
+  .tag-violet  { border-color: rgba(124,58,237,0.3); color: var(--violet); background: rgba(124,58,237,0.06); }
+  .tag-cyan    { border-color: rgba(8,145,178,0.3);  color: var(--cyan);   background: rgba(8,145,178,0.06); }
+  .tag-lime    { border-color: rgba(77,124,15,0.3);  color: var(--lime);   background: rgba(77,124,15,0.06); }
+  .tag-amber   { border-color: rgba(180,83,9,0.3);   color: var(--amber);  background: rgba(180,83,9,0.06); }
+
+  /* ── SECTION COMMONS ── */
+  .section-inner { max-width: 1100px; margin: 0 auto; padding: 6rem 4rem; }
+  .section-header { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 3.5rem; }
+  .section-num { font-family: var(--mono); font-size: 0.62rem; color: var(--pink); letter-spacing: 0.2em; }
+  h2 { font-size: clamp(1.7rem, 3vw, 2.4rem); font-weight: 800; letter-spacing: -0.025em; color: var(--ink); }
+  .line-accent { flex: 1; height: 1px; background: var(--border); margin-left: 1rem; }
+
+  /* ── ABOUT ── */
+  #about { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 4rem; align-items: start; }
+  .about-photo-wrap { position: relative; }
+
+  /* ════════════════════════════════════════════
+     PHOTO — when you have your photo ready:
+
+     Replace the <div class="photo-placeholder">
+     block with:
+
+       <img
+         src="images/sofia.jpg"
+         alt="Sofia Muñoz Ruiz"
+         style="width:100%; border-radius:8px;
+                display:block; box-shadow:var(--shadow);"
+       />
+
+     Save your photo as: images/sofia.jpg
+     (create an "images" folder next to index.html)
+  ════════════════════════════════════════════ */
+  .photo-placeholder {
+    width: 100%; aspect-ratio: 3/4;
+    background: var(--bg3); border: 1px solid var(--border); border-radius: 8px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 1rem; color: var(--muted); font-family: var(--mono); font-size: 0.68rem;
+    letter-spacing: 0.08em; text-align: center; overflow: hidden; position: relative;
+  }
+  .photo-placeholder::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--pink), var(--violet)); }
+  .photo-frame-decor { position: absolute; top: -8px; right: -8px; width: 60px; height: 60px; border-top: 2px solid var(--violet); border-right: 2px solid var(--violet); border-radius: 0 8px 0 0; pointer-events: none; }
+
+  .about-text h3 { font-size: 1.35rem; font-weight: 800; margin-bottom: 0.2rem; color: var(--ink); }
+  .about-text .role { font-family: var(--mono); font-size: 0.68rem; color: var(--cyan); letter-spacing: 0.1em; margin-bottom: 1.4rem; }
+  .about-text p { color: var(--ink2); margin-bottom: 1rem; font-size: 0.9rem; }
+  .about-text strong { color: var(--ink); }
+
+  .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.7rem; margin-top: 1.8rem; }
+  .skill-item { background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 0.75rem 1rem; box-shadow: var(--shadow); }
+  .skill-label { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.1em; color: var(--pink); margin-bottom: 0.2rem; text-transform: uppercase; }
+  .skill-name { font-size: 0.8rem; font-weight: 600; color: var(--ink); }
+
+  /* ── PUBLICATIONS ── */
+  #publications { background: var(--bg); }
+  .pub-list { display: flex; flex-direction: column; gap: 1rem; }
+  .pub-card {
+    background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+    padding: 1.4rem 1.8rem; display: grid; grid-template-columns: auto 1fr;
+    gap: 1.5rem; align-items: start;
+    box-shadow: var(--shadow); transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .pub-card:hover { box-shadow: var(--shadow-hover); transform: translateX(3px); }
+  .pub-year { font-family: var(--mono); font-size: 0.62rem; color: var(--muted); writing-mode: vertical-rl; transform: rotate(180deg); letter-spacing: 0.1em; padding-top: 0.3rem; min-width: 18px; }
+  .pub-content h4 { font-size: 0.92rem; font-weight: 700; color: var(--ink); margin-bottom: 0.35rem; line-height: 1.45; }
+  .pub-meta { font-size: 0.76rem; color: var(--muted); margin-bottom: 0.55rem; }
+  .pub-meta em { font-style: normal; color: var(--violet); font-weight: 600; }
+  .pub-badges { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+  .badge { font-family: var(--mono); font-size: 0.56rem; letter-spacing: 0.07em; padding: 0.2rem 0.55rem; border-radius: 20px; border: 1px solid; text-decoration: none; display: inline-block; }
+  .badge-violet { border-color: rgba(124,58,237,0.3); color: var(--violet); background: rgba(124,58,237,0.07); }
+  .badge-cyan   { border-color: rgba(8,145,178,0.35); color: var(--cyan);   background: rgba(8,145,178,0.07); }
+  .badge-amber  { border-color: rgba(180,83,9,0.35);  color: var(--amber);  background: rgba(180,83,9,0.07); }
+  .badge-pink   { border-color: rgba(232,0,90,0.3);   color: var(--pink);   background: rgba(232,0,90,0.07); }
+
+  /* ── CONFERENCES ── */
+  #conferences { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .conf-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 1rem; }
+  .conf-card { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 1.4rem; box-shadow: var(--shadow); transition: box-shadow 0.2s; position: relative; overflow: hidden; }
+  .conf-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2.5px; }
+  .conf-card:nth-child(1)::before { background: var(--pink); }
+  .conf-card:nth-child(2)::before { background: var(--violet); }
+  .conf-card:nth-child(3)::before { background: var(--cyan); }
+  .conf-card:nth-child(4)::before { background: var(--lime); }
+  .conf-card:nth-child(5)::before { background: var(--amber); }
+  .conf-card:nth-child(6)::before { background: var(--muted); }
+  .conf-card:hover { box-shadow: var(--shadow-hover); }
+  .conf-type { font-family: var(--mono); font-size: 0.58rem; color: var(--muted); letter-spacing: 0.12em; margin-bottom: 0.5rem; }
+  .conf-card h4 { font-size: 0.88rem; font-weight: 700; color: var(--ink); margin-bottom: 0.35rem; line-height: 1.4; }
+  .conf-card p { font-size: 0.78rem; color: var(--ink2); }
+
+  /* ── CV ── */
+  #cv { background: var(--bg); }
+  .cv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+  .cv-section-title { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 2rem; }
+  .timeline { position: relative; padding-left: 2rem; }
+  .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 1.5px; background: linear-gradient(to bottom, var(--pink), var(--violet), var(--cyan)); }
+  .timeline-item { position: relative; margin-bottom: 2.2rem; }
+  .timeline-item::before { content: ''; position: absolute; left: -2rem; top: 0.45rem; width: 8px; height: 8px; border-radius: 50%; background: var(--pink); transform: translateX(-3px); box-shadow: 0 0 0 3px rgba(232,0,90,0.15); }
+  .timeline-date { font-family: var(--mono); font-size: 0.6rem; color: var(--pink); letter-spacing: 0.12em; margin-bottom: 0.2rem; }
+  .timeline-title { font-size: 0.92rem; font-weight: 700; color: var(--ink); margin-bottom: 0.2rem; }
+  .timeline-place { font-size: 0.8rem; color: var(--cyan); margin-bottom: 0.4rem; font-weight: 600; }
+  .timeline-desc { font-size: 0.78rem; color: var(--ink2); line-height: 1.6; }
+  .cv-download { margin-top: 3rem; text-align: center; }
+
+  /* ── AWARDS ── */
+  #awards { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .awards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
+  .award-card { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem; box-shadow: var(--shadow); transition: box-shadow 0.2s; }
+  .award-card:hover { box-shadow: var(--shadow-hover); }
+  .award-icon { font-size: 1.5rem; margin-bottom: 0.7rem; }
+  .award-card h4 { font-size: 0.88rem; font-weight: 700; color: var(--ink); margin-bottom: 0.35rem; line-height: 1.4; }
+  .award-card p { font-size: 0.77rem; color: var(--ink2); line-height: 1.6; }
+  .award-source { font-family: var(--mono); font-size: 0.58rem; color: var(--amber); letter-spacing: 0.1em; margin-top: 0.6rem; font-weight: 700; }
+
+  /* ── GALLERY ── */
+  #gallery { background: var(--bg); }
+  .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  .gallery-item { position: relative; overflow: hidden; border-radius: 8px; border: 1px solid var(--border); aspect-ratio: 4/3; background: var(--bg2); box-shadow: var(--shadow); }
+  .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; display: block; }
+  .gallery-item:hover img { transform: scale(1.04); }
+  .gallery-caption { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(14,17,23,0.75)); padding: 1rem; }
+  .gallery-caption p { font-family: var(--mono); font-size: 0.6rem; color: #fff; letter-spacing: 0.07em; line-height: 1.4; }
+  .img-placeholder { display: flex; width: 100%; height: 100%; align-items: center; justify-content: center; flex-direction: column; gap: 0.5rem; color: var(--muted); font-family: var(--mono); font-size: 0.6rem; text-align: center; padding: 1rem; }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--bg2); border-top: 1px solid var(--border); }
+  .contact-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+  .contact-text h3 { font-size: 1.35rem; font-weight: 800; margin-bottom: 1rem; color: var(--ink); }
+  .contact-text p { color: var(--ink2); font-size: 0.88rem; margin-bottom: 2rem; }
+  .contact-links { display: flex; flex-direction: column; gap: 0.7rem; }
+  .contact-link { display: flex; align-items: center; gap: 0.9rem; font-family: var(--mono); font-size: 0.72rem; color: var(--ink); text-decoration: none; padding: 0.7rem 1rem; border: 1px solid var(--border); border-radius: 6px; background: var(--bg); box-shadow: var(--shadow); transition: all 0.2s; }
+  .contact-link:hover { border-color: rgba(124,58,237,0.4); color: var(--violet); box-shadow: var(--shadow-hover); transform: translateX(3px); }
+  .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.35rem; }
+  .form-group label { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em; color: var(--muted); text-transform: uppercase; }
+  .form-group input, .form-group textarea { background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 0.7rem 1rem; color: var(--ink); font-family: var(--sans); font-size: 0.88rem; outline: none; transition: border-color 0.2s; resize: vertical; }
+  .form-group input:focus, .form-group textarea:focus { border-color: var(--violet); box-shadow: 0 0 0 3px rgba(124,58,237,0.1); }
+
+  /* ── FOOTER ── */
+  footer { background: var(--ink); padding: 2rem 4rem; display: flex; align-items: center; justify-content: space-between; }
+  footer p { font-family: var(--mono); font-size: 0.6rem; color: rgba(255,255,255,0.4); letter-spacing: 0.1em; }
+  .footer-bar { height: 2px; width: 60px; background: linear-gradient(90deg, var(--pink), var(--violet)); }
+
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.55s ease, transform 0.55s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    #hero { grid-template-columns: 1fr; padding: 6rem 1.5rem 3rem; gap: 3rem; }
+    .section-inner { padding: 4rem 1.5rem; }
+    .about-grid, .cv-grid, .contact-wrap { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; }
+    footer { padding: 1.5rem; flex-direction: column; gap: 1rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#hero">Sofia Muñoz Ruiz</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#conferences">Conferences</a></li>
+    <li><a href="#cv">CV</a></li>
+    <li><a href="#awards">Awards</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-tag">MSc Student · Neuroengineering</div>
+    <h1>Sofia<br><em>Muñoz Ruiz</em></h1>
+    <p class="hero-bio">
+      Physics Engineer & MSc student in Neuroengineering at the University of Antioquia.
+      Specialized in EEG signal analysis, AI for neurodegenerative disease detection,
+      and brain–heart interaction during anesthesia.
+    </p>
+    <div class="hero-btns">
+      <a class="btn btn-primary" href="#publications">Publications</a>
+      <a class="btn btn-outline" href="#cv">View CV</a>
+    </div>
+    <div class="hero-links">
+      <a href="https://orcid.org/0000-0003-3295-9139" target="_blank">ORCID</a>
+      <a href="https://github.com/SofiaMunozRuiz" target="_blank">GitHub</a>
+      <a href="mailto:sofia.mruiz@udea.edu.co">Email</a>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="visual-label"><span>EEG</span> · RESTING STATE · 8-CHANNEL</div>
+    <canvas class="eeg-canvas" id="eegCanvas"></canvas>
+    <div class="tags-row">
+      <span class="tag tag-pink">EEG Analysis</span>
+      <span class="tag tag-violet">Deep Learning</span>
+      <span class="tag tag-cyan">Alzheimer's</span>
+      <span class="tag tag-lime">Python</span>
+      <span class="tag tag-amber">MATLAB</span>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner reveal">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <h2>About Me</h2>
+      <div class="line-accent"></div>
+    </div>
+    <div class="about-grid">
+      <div class="about-photo-wrap">
+        <!--
+          ════════════════════════════════
+          YOUR PHOTO — replace this block:
+
+          <img
+            src="images/sofia.jpg"
+            alt="Sofia Muñoz Ruiz"
+            style="width:100%; border-radius:8px;
+                   display:block; box-shadow:var(--shadow);"
+          />
+
+          Steps:
+          1. Create a folder called "images" next to index.html
+          2. Copy your photo there and name it sofia.jpg
+          3. Delete the div below and paste the <img> tag above
+          ════════════════════════════════
+        -->
+        <div class="about-photo-wrap">
+          <img
+            src="sofia.jpg"
+            alt="Sofia Muñoz Ruiz"
+            style="width:100%; border-radius:8px; display:block; box-shadow:var(--shadow);"
+          />
+          <div class="photo-frame-decor"></div>
+        </div>
+
+      <div class="about-text">
+        <h3>Sofia Muñoz Ruiz</h3>
+        <p class="role">MSc Student · Neuroengineering · University of Antioquia, Medellín</p>
+        <p>I am a Physics Engineer and MSc student in Neuroengineering with a strong interdisciplinary background in biomedical signal processing, artificial intelligence, and computational neuroscience. My research focuses on identifying neurophysiological biomarkers for preclinical Alzheimer's disease using EEG and deep learning, in collaboration with the Neuroscience Group of Antioquia and Sapienza University of Rome.</p>
+        <p>My undergraduate thesis — awarded <strong>Honorable Mention</strong> — studied brain–heart interactions during anesthesia using ML applied to physiological signals from 605 patients (VitalDB database). I also teach laboratory courses in biosignals and AI/ML at UdeA.</p>
+        <p>DAAD scholarship recipient. Presented research at the University Medical Center Göttingen and University of Augsburg, Germany. Native Spanish · B2.2 English · A2 French.</p>
+
+        <div class="skills-grid">
+          <div class="skill-item">
+            <div class="skill-label">Signals</div>
+            <div class="skill-name">EEG · ECG · fMRI</div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-label">AI / ML</div>
+            <div class="skill-name">Deep Learning · SVM · XGBoost</div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-label">Languages</div>
+            <div class="skill-name">Python · MATLAB · R Studio</div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-label">Tools</div>
+            <div class="skill-name">MNE · PyTorch · OpenBCI</div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-label">Methods</div>
+            <div class="skill-name">CRISP-DM · Nonlinear Analysis</div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-label">Teaching</div>
+            <div class="skill-name">Biosignals Lab · BCI · AI/DL</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section id="publications">
+  <div class="section-inner reveal">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2>Publications</h2>
+      <div class="line-accent"></div>
+    </div>
+    <div class="pub-list">
+
+      <div class="pub-card">
+        <div class="pub-year">2025</div>
+        <div class="pub-content">
+          <h4>Tachogram processing considering different types of artifacts in heart rate variability analysis</h4>
+          <p class="pub-meta">Sofia Muñoz-Ruiz†, Juandiego Saavedra-Ordoñez†, Natalia Valencia-Fajardo†, Sebastian Zaunseder, Nicolai Spicher, Rubiel Vargas-Cañas, Ennio Idrobo-Ávila · <em>Royal Society Open Science</em> · Under Review</p>
+          <div class="pub-badges">
+            <span class="badge badge-violet">ECG</span>
+            <span class="badge badge-violet">HRV</span>
+            <span class="badge badge-violet">Artifacts</span>
+            <span class="badge badge-amber">Under Review</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub-card">
+        <div class="pub-year">2025</div>
+        <div class="pub-content">
+          <h4>Lightweight R-peak detector grounded on a synthetic QRS-template for resource-constrained devices</h4>
+          <p class="pub-meta">Ennio Idrobo (Corresponding), Sofia Muñoz-Ruiz, Juandiego Saavedra-Ordoñez, Natalia Valencia-Fajardo, Rubiel Vargas-Cañas · <em>Journal</em> · Under Review</p>
+          <div class="pub-badges">
+            <span class="badge badge-violet">ECG</span>
+            <span class="badge badge-violet">R-peak Detection</span>
+            <span class="badge badge-amber">Under Review</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub-card">
+        <div class="pub-year">2024</div>
+        <div class="pub-content">
+          <h4>Analysis of electrocardiographic signals to assess heart rate variability under surgical context: a methodological proposal</h4>
+          <p class="pub-meta">Muñoz-Ruiz S, Saavedra-Ordoñez J, Valencia-Fajardo N, Spicher N, Vargas-Cañas R, Idrobo-Ávila E · <em>Workshop Biosignals</em> · Göttingen, Germany</p>
+          <div class="pub-badges">
+            <span class="badge badge-violet">ECG</span>
+            <span class="badge badge-violet">HRV</span>
+            <span class="badge badge-violet">Surgical Context</span>
+            <a href="https://doi.org/10.47952/gro-publ-215" target="_blank" class="badge badge-cyan">DOI ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub-card">
+        <div class="pub-year">2022</div>
+        <div class="pub-content">
+          <h4>Digital Transformation in Epilepsy Diagnosis Using Raw Images and Transfer Learning in Electroencephalograms</h4>
+          <p class="pub-meta">M. S. Muñoz, C. E. S. Torres, R. Salazar-Cabrera, D. M. López, R. Vargas-Cañas · <em>Sustainability</em> · MDPI · Vol. 14, No. 18, p. 11420</p>
+          <div class="pub-badges">
+            <span class="badge badge-violet">EEG</span>
+            <span class="badge badge-violet">Transfer Learning</span>
+            <span class="badge badge-violet">Epilepsy</span>
+            <a href="https://doi.org/10.3390/su141811420" target="_blank" class="badge badge-cyan">DOI ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub-card">
+        <div class="pub-year">2020</div>
+        <div class="pub-content">
+          <h4>Automatic Detection of Epileptic Waves in Electroencephalograms Using Bag of Visual Words and Machine Learning</h4>
+          <p class="pub-meta">M. S. Muñoz, C. E. S. Torres, D. M. López, R. Salazar-Cabrera, R. Vargas-Cañas · <em>Brain Informatics</em> · Lecture Notes in Computer Science, Vol. 12241 · Springer</p>
+          <div class="pub-badges">
+            <span class="badge badge-violet">EEG</span>
+            <span class="badge badge-violet">Machine Learning</span>
+            <span class="badge badge-violet">Epilepsy</span>
+            <a href="https://doi.org/10.1007/978-3-030-59277-6_15" target="_blank" class="badge badge-cyan">DOI ↗</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONFERENCES -->
+<section id="conferences">
+  <div class="section-inner reveal">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2>Conferences & Presentations</h2>
+      <div class="line-accent"></div>
+    </div>
+    <div class="conf-grid">
+      <div class="conf-card">
+        <div class="conf-type">🧠 POSTER · 2026</div>
+        <h4>EEG-Based Characterization of Neurophysiological Alterations in MCI During Serious Game Interaction</h4>
+        <p>Computational Approaches to Alzheimer's Disease Symposium · Medellín · <strong style="color:var(--amber)">Honorable Mention</strong></p>
+      </div>
+      <div class="conf-card">
+        <div class="conf-type">🎤 ORAL · 2024</div>
+        <h4>Brain–Heart Interaction During Anesthesia Using Physiological Signals</h4>
+        <p>Center for the Heart and Brain · Georg-August-Universität Göttingen · Germany</p>
+      </div>
+      <div class="conf-card">
+        <div class="conf-type">🎤 ORAL · 2024</div>
+        <h4>Brain–Heart Interaction During Anesthesia Using Physiological Signals</h4>
+        <p>Faculty of Applied Computer Science · University of Augsburg · Germany</p>
+      </div>
+      <div class="conf-card">
+        <div class="conf-type">📋 WORKSHOP · 2024</div>
+        <h4>Workshop Biosignals — Speaker & Participant</h4>
+        <p>Biosignal Processing Group · University Medical Center Göttingen (UMG) · Feb–Mar 2024</p>
+      </div>
+      <div class="conf-card">
+        <div class="conf-type">🏫 SUMMER SCHOOL · 2024</div>
+        <h4>Summer School in Neuroengineering and Neurorehabilitation</h4>
+        <p>Universidad de Antioquia · Faculty of Engineering · 32 hours · July 2024</p>
+      </div>
+      <div class="conf-card">
+        <div class="conf-type">🔬 WORKSHOP · 2015</div>
+        <h4>Physiological Control of Effort with Music</h4>
+        <p>University of Ghent – University of Cauca collaborative workshop</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CV -->
+<section id="cv">
+  <div class="section-inner reveal">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <h2>Experience & Education</h2>
+      <div class="line-accent"></div>
+    </div>
+    <div class="cv-grid">
+      <div>
+        <p class="cv-section-title" style="color:var(--pink)">Education</p>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-date">2025 – 2026</div>
+            <div class="timeline-title">MSc in Engineering — Neuroengineering</div>
+            <div class="timeline-place">University of Antioquia · Medellín, Colombia</div>
+            <div class="timeline-desc">Research on neurophysiological biomarkers for preclinical Alzheimer's disease. EEG + Deep Learning. Collaboration with Sapienza University of Rome.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">2017 – 2024</div>
+            <div class="timeline-title">BSc in Engineering Physics</div>
+            <div class="timeline-place">University of Cauca · Popayán, Colombia</div>
+            <div class="timeline-desc">Thesis on AI for brain–heart analysis during anesthesia. <strong style="color:var(--amber)">Honorable Mention</strong> — Resolution No. 895, Sept. 2024.</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p class="cv-section-title" style="color:var(--cyan)">Research & Teaching</p>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-date">2025 – Present</div>
+            <div class="timeline-title">Researcher in Neuroengineering</div>
+            <div class="timeline-place">University of Antioquia · Neuroscience Group</div>
+            <div class="timeline-desc">EEG acquisition from E280A mutation carriers. Analysis with SmartMe&You platform (UdeA + University of Rome).</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">2025 – Present</div>
+            <div class="timeline-title">Laboratory Instructor — Biosignals & Systems</div>
+            <div class="timeline-place">University of Antioquia · Faculty of Engineering</div>
+            <div class="timeline-desc">Teaching EEG processing, BCI projects, and AI/ML/Deep Learning applied to biomedical engineering.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">2023 – 2024</div>
+            <div class="timeline-title">Undergraduate Research Thesis</div>
+            <div class="timeline-place">University of Cauca · Dept. of Physics</div>
+            <div class="timeline-desc">Brain–heart interaction during anesthesia. CRISP-DM on 605 patients (VitalDB). SVM, XGBoost, Random Forest & Neural Networks.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">2022 – 2023</div>
+            <div class="timeline-title">EEG & Neuroimaging — Pediatric Epilepsy</div>
+            <div class="timeline-place">University of Cauca · Colombia</div>
+            <div class="timeline-desc">EEG preprocessing and brain wave pattern analysis in pediatric patients.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cv-download">
+      <!--
+        CV PDF DOWNLOAD:
+        1. Create a folder "files" next to index.html
+        2. Save your CV as: files/cv_sofia_munoz.pdf
+      -->
+      <a class="btn btn-outline" href="files/cv_sofia_munoz.pdf" download>Download Full CV (PDF)</a>
+    </div>
+  </div>
+</section>
+
+<!-- AWARDS -->
+<section id="awards">
+  <div class="section-inner reveal">
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <h2>Awards & Recognition</h2>
+      <div class="line-accent"></div>
+    </div>
+    <div class="awards-grid">
+      <div class="award-card">
+        <div class="award-icon">🏆</div>
+        <h4>Honorable Mention — Undergraduate Thesis</h4>
+        <p>For "Implementation of AI Algorithms for the Analysis of Brain–Heart Relationship During Anesthesia Using Physiological Signals." Resolution No. 895, Sept. 2024.</p>
+        <div class="award-source">University of Cauca · 2024</div>
+      </div>
+      <div class="award-card">
+        <div class="award-icon">🏅</div>
+        <h4>Honorable Mention — Research Poster</h4>
+        <p>"EEG-Based Characterization of Neurophysiological Alterations in MCI During Serious Game Interaction" — Computational Approaches to Alzheimer's Disease Symposium.</p>
+        <div class="award-source">University of Antioquia · 2026</div>
+      </div>
+      <div class="award-card">
+        <div class="award-icon">✈️</div>
+        <h4>DAAD Study Visit Scholarship</h4>
+        <p>Selected participant in the "Study Visits for Groups of Foreign Students in Germany" program (DAAD). Academic visits to Göttingen and Augsburg.</p>
+        <div class="award-source">DAAD · 2024</div>
+      </div>
+      <div class="award-card">
+        <div class="award-icon">🎓</div>
+        <h4>Student Instructor Scholarship</h4>
+        <p>Academic Merit Recognition for outstanding performance in research and teaching activities at the Faculty of Engineering.</p>
+        <div class="award-source">University of Antioquia · 2025</div>
+      </div>
+      <div class="award-card">
+        <div class="award-icon">🤝</div>
+        <h4>Recognition — Project Management</h4>
+        <p>Acknowledged for coordinating the proposal development that enabled multiple students to obtain DAAD academic mobility benefits.</p>
+        <div class="award-source">University of Cauca · 2024</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="section-inner reveal">
+    <div class="section-header">
+      <span class="section-num">06</span>
+      <h2>Gallery</h2>
+      <div class="line-accent"></div>
+    </div>
+    <div class="gallery-grid">
+
+      <!-- PHOTO 1 -->
+      <div class="gallery-item">
+        <!--
+          Save the file: images/gottingen_presentation.jpg
+          (the photo presenting at Göttingen — Oral_presentation_...Gottingen.jpg)
+        -->
+        <img src="Oral presentation - Center for the Heart and Brain, Gottingen.jpg" alt="Oral presentation Göttingen"
+             onerror="this.style.display='none';" />
+        <div class="img-placeholder">
+          <span style="font-size:1.4rem">📷</span>
+          <span>Save as:<br><strong>images/gottingen_presentation.jpg</strong></span>
+        </div>
+        <div class="gallery-caption"><p>Oral Presentation · Center for Heart & Brain · Göttingen, 2024</p></div>
+      </div>
+
+      <!-- PHOTO 2 -->
+      <div class="gallery-item">
+        <!--
+          Save the file: images/augsburg_presentation.jpg
+          (the photo at Augsburg — Oral_presentation_...Augsburg.jpg)
+        -->
+        <img src="Oral presentation - Faculty of Applied Computer Science,University of Augsburg.jpg" alt="Oral presentation Augsburg"
+             onerror="this.style.display='none';" />
+        <div class="img-placeholder">
+          <span style="font-size:1.4rem">📷</span>
+          <span>Save as:<br><strong>images/augsburg_presentation.jpg</strong></span>
+        </div>
+        <div class="gallery-caption"><p>Oral Presentation · University of Augsburg, 2024</p></div>
+      </div>
+
+      <!-- PHOTO 3 -->
+      <div class="gallery-item">
+        <!--
+          Save the file: images/daad_group.jpg
+          (the group photo — coordinating_and_contributing...jpg)
+        -->
+        <img src="daad_group.jpg" alt="DAAD Study Visit Group"
+             onerror="this.style.display='none';" />
+        <div class="img-placeholder">
+          <span style="font-size:1.4rem">📷</span>
+          <span>Save as:<br><strong>images/daad_group.jpg</strong></span>
+        </div>
+        <div class="gallery-caption"><p>DAAD Study Visit Group · Germany, 2024</p></div>
+      </div>
+
+    </div>
+    <p style="font-family:var(--mono);font-size:0.62rem;color:var(--muted);margin-top:1.2rem;text-align:center;letter-spacing:0.06em;">
+      Create an <strong style="color:var(--violet)">images/</strong> folder next to index.html and rename your photos as shown above.
+    </p>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner reveal">
+    <div class="section-header">
+      <span class="section-num">07</span>
+      <h2>Contact</h2>
+      <div class="line-accent"></div>
+    </div>
+    <div class="contact-wrap">
+      <div class="contact-text">
+        <h3>Let's connect</h3>
+        <p>Interested in research collaborations, conference talks, or exchanging ideas about neuroscience and AI? I'd love to hear from you.</p>
+        <div class="contact-links">
+          <a class="contact-link" href="mailto:sofia.mruiz@udea.edu.co">✉ &nbsp; sofia.mruiz@udea.edu.co</a>
+          <a class="contact-link" href="mailto:msofia.munozr16@gmail.com">✉ &nbsp; msofia.munozr16@gmail.com</a>
+          <a class="contact-link" href="https://orcid.org/0000-0003-3295-9139" target="_blank">🔬 &nbsp; ORCID: 0000-0003-3295-9139</a>
+          <a class="contact-link" href="https://github.com/SofiaMunozRuiz" target="_blank">⌥ &nbsp; github.com/SofiaMunozRuiz</a>
+        </div>
+      </div>
+      <form class="contact-form" onsubmit="return false;">
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" placeholder="Your name" />
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" placeholder="your@email.com" />
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea rows="5" placeholder="Tell me about your project or proposal..."></textarea>
+        </div>
+        <button class="btn btn-primary" type="submit" style="width:fit-content">Send message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 Sofia Muñoz Ruiz · Neuroscientist & Neuroengineer</p>
+  <div class="footer-bar"></div>
+  <p>Medellín, Colombia</p>
+</footer>
+
+<script>
+/* EEG ANIMATION — light theme */
+const canvas = document.getElementById('eegCanvas');
+const ctx = canvas.getContext('2d');
+function resize() {
+  canvas.width = canvas.offsetWidth * devicePixelRatio;
+  canvas.height = canvas.offsetHeight * devicePixelRatio;
+  ctx.scale(devicePixelRatio, devicePixelRatio);
+}
+resize();
+const channels = [
+  { name: 'Fp1', color: '#e8005a', freq: 1.2, amp: 12, noise: 0.8 },
+  { name: 'Fp2', color: '#e8005a', freq: 1.5, amp: 10, noise: 0.9 },
+  { name: 'C3',  color: '#7c3aed', freq: 1.8, amp: 9,  noise: 1.0 },
+  { name: 'C4',  color: '#7c3aed', freq: 2.1, amp: 8,  noise: 0.9 },
+  { name: 'P7',  color: '#0891b2', freq: 1.4, amp: 11, noise: 0.8 },
+  { name: 'P8',  color: '#0891b2', freq: 1.6, amp: 10, noise: 0.7 },
+  { name: 'O1',  color: '#4d7c0f', freq: 2.5, amp: 13, noise: 0.6 },
+  { name: 'O2',  color: '#4d7c0f', freq: 2.3, amp: 12, noise: 0.7 },
+];
+let t = 0;
+const noiseSeeds = channels.map(() => Array.from({length:200}, () => (Math.random()-0.5)*2));
+function noise(ch, x) { return noiseSeeds[ch][Math.floor(x*50) % noiseSeeds[ch].length]; }
+function draw() {
+  const W = canvas.offsetWidth, H = canvas.offsetHeight;
+  ctx.clearRect(0, 0, W, H);
+  const spacing = H / (channels.length + 1);
+  channels.forEach((ch, i) => {
+    const y0 = (i+1)*spacing;
+    ctx.beginPath(); ctx.strokeStyle = ch.color; ctx.lineWidth = 1.3; ctx.globalAlpha = 0.75;
+    for (let x = 0; x <= W; x++) {
+      const p = t + x*0.018;
+      const s = Math.sin(p*ch.freq)*ch.amp + Math.sin(p*ch.freq*2.3+1)*ch.amp*0.35 + Math.sin(p*ch.freq*0.5+2)*ch.amp*0.5 + noise(i, x/W+t*0.01)*ch.amp*ch.noise*0.35;
+      x===0 ? ctx.moveTo(x,y0+s) : ctx.lineTo(x,y0+s);
+    }
+    ctx.stroke();
+    ctx.globalAlpha=0.55; ctx.fillStyle=ch.color; ctx.font="600 9px 'Space Mono',monospace";
+    ctx.fillText(ch.name, 6, y0-3); ctx.globalAlpha=1;
+  });
+  t += 0.018; requestAnimationFrame(draw);
+}
+draw();
+window.addEventListener('resize', resize);
+
+/* SCROLL REVEAL */
+const obs = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
