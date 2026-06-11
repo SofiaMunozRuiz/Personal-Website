@@ -679,20 +679,20 @@
           <a class="contact-link" href="https://github.com/SofiaMunozRuiz" target="_blank">⌥ &nbsp; github.com/SofiaMunozRuiz</a>
         </div>
       </div>
-      <form class="contact-form" action="https://formspree.io/f/xeewlbol" method="POST">
-        <div class="form-group">
-          <label>Name</label>
-          <input type="text" placeholder="Your name" />
-        </div>
-        <div class="form-group">
-          <label>Email</label>
-          <input type="email" placeholder="your@email.com" />
-        </div>
-        <div class="form-group">
-          <label>Message</label>
-          <textarea rows="5" placeholder="Tell me about your project or proposal..."></textarea>
-        </div>
-        <button class="btn btn-primary" type="submit" style="width:fit-content">Send message</button>
+      <form
+        action="https://formspree.io/f/xeewlbol"
+        method="POST"
+      >
+        <label>
+          Your email:
+          <input type="email" name="email">
+        </label>
+        <label>
+          Your message:
+          <textarea name="message"></textarea>
+        </label>
+        <!-- your other form fields go here -->
+        <button type="submit">Send</button>
       </form>
     </div>
   </div>
